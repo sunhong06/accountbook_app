@@ -1,6 +1,7 @@
 import Input from '../common/Input';
 
 type Props = {
+  className?: string;
   type?: string;
   label: string;
   value: string;
@@ -8,9 +9,9 @@ type Props = {
   buttonComponents?: any;
 };
 
-const InputLabelItem = ({ type, label, value, onChangeHandler, buttonComponents }: Props) => {
+const InputLabelItem = ({ className, type, label, value, onChangeHandler, buttonComponents }: Props) => {
   return (
-    <div>
+    <div className={className}>
       <label>{label}</label>
       <Input type={type} value={value} onChange={onChangeHandler} />
       {buttonComponents && buttonComponents}
