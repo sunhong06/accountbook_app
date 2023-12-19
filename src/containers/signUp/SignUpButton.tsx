@@ -18,11 +18,12 @@ const SignUpButton = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      // body: JSON.stringify({
-      //   id,
-      //   email,
-      //   password,
-      // }),
+      body: JSON.stringify({
+        id: 'dd',
+        email: 'dd',
+        password: '123123123',
+        date: new Date(),
+      }),
     });
   };
 

@@ -3,6 +3,7 @@ import Input from '@/components/common/Input';
 import InputLabelItem from '@/components/signUp/InputLabelItem';
 import defaultTheme from '@/styles/theme/defaultTheme';
 import { signUpObj } from '@/types/user';
+import axios from 'axios';
 import { useState, FormEvent } from 'react';
 import styled from 'styled-components';
 
@@ -51,16 +52,39 @@ const SignUpInputItemGroup = () => {
     setAuthNumber(value);
   };
 
-  const sendAuthNumber = () => {};
-  const resendAuthNumber = () => {};
+  const sendAuthNumber = async () => {
+    const response = await fetch('/api/auth/email', {
+      method: 'POST',
+      body: JSON.stringify('kongsunk@nate.com'),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  };
 
+  const resendAuthNumber = async () => {};
+  const checkIdHandler = async () => {
+    const response = await fetch('/api/auth/checkid', {
+      method: 'POST',
+      body: JSON.stringify(inputValue.id),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log(response);
+    if (response.ok) {
+      alert('사용가능한 ID입니다.');
+    } else {
+      alert('이미 사용중인 ID입니다.');
+    }
+  };
   return (
     <InputLabelItemWrap>
       <StyleInputLabelItem
         label='아이디'
         value={inputValue.id}
         onChangeHandler={(e: FormEvent<HTMLInputElement>) => inputChangeHandler('id', e.currentTarget.value)}
-        buttonComponents={<button>중복확인</button>}
+        buttonComponents={<button onClick={checkIdHandler}>중복확인</button>}
       />
 
       <StyleInputLabelItem

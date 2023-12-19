@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 import { NextRequest, NextResponse } from 'next/server';
-import User from '../../../../models/User';
+import User from '../../../../../models/User';
 import dbConnect from '@/app/api/db/dbConnect';
+import bcrypt from 'bcrypt';
 
 export async function GET(req: NextRequest) {
   try {
@@ -13,16 +14,20 @@ export async function GET(req: NextRequest) {
   }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest, res: NextResponse) {
   try {
     await dbConnect();
     const user = await req.json();
-    const { id, password, email } = user;
+    const { id, password, email, date } = user;
+    console.log(id);
+    // bcrypt 비밀번호 암호화
+    const hash = bcrypt.hashSync(password, 10);
 
     const newUser = new User({
       id,
       email,
-      password,
+      password: hash,
+      date,
     });
 
     const savedUser = await newUser.save();
