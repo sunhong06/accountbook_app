@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import GlobalStyle from '@/styles/GlobalStyle';
 import Container from '@/components/common/layout/Container';
+import ReduxProvider from '@/redux/Provider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,11 +21,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body suppressHydrationWarning={true} className={roboto.className}>
-        <Header />
-        <main>
-          <Container>{children}</Container>
-        </main>
-        <GlobalStyle />
+        <ReduxProvider>
+          <Header />
+          <main>
+            <Container>{children}</Container>
+          </main>
+          <GlobalStyle />
+        </ReduxProvider>
       </body>
     </html>
   );

@@ -19,7 +19,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     await dbConnect();
     const user = await req.json();
     const { id, password, email, date } = user;
-    console.log(id);
+
     // bcrypt 비밀번호 암호화
     const hash = bcrypt.hashSync(password, 10);
 

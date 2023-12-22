@@ -41,7 +41,7 @@ const StyleInputLabelItem = styled(InputLabelItem)`
 const SignUpInputItemGroup = () => {
   const [inputValue, setInputValue] = useState<signUpObj>({ id: '', password: '', passwordConfirm: '', email: '' });
   const [authNumber, setAuthNumber] = useState('');
-  const [isShowAuthNumberInput, setIsShowAuthNumberInput] = useState(false);
+  const [isShowAuthNumberInput, setIsShowAuthNumberInput] = useState(true);
 
   const inputChangeHandler = (key: keyof signUpObj, value: any) => {
     setInputValue((prev) => ({ ...prev, [key]: value }));
@@ -51,18 +51,28 @@ const SignUpInputItemGroup = () => {
     const { value } = e.currentTarget;
     setAuthNumber(value);
   };
-
-  const sendAuthNumber = async () => {
-    const response = await fetch('/api/auth/email', {
-      method: 'POST',
-      body: JSON.stringify('kongsunk@nate.com'),
+  const checkAuthNumber = async () => {
+    const res = await axios.post('api/auth/email/result', {
+      body: { authNumber: 171235, email: 'kongsunk@nate.com' },
       headers: {
         'Content-Type': 'application/json',
       },
     });
   };
+  const sendAuthNumber = async () => {
+    const res = await axios.post('api/auth/email', {
+      body: 'kongsunk@nate.com',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-  const resendAuthNumber = async () => {};
+    return res.data;
+  };
+
+  const resendAuthNumber = async () => {
+    sendAuthNumber();
+  };
   const checkIdHandler = async () => {
     const response = await fetch('/api/auth/checkid', {
       method: 'POST',
@@ -71,7 +81,6 @@ const SignUpInputItemGroup = () => {
         'Content-Type': 'application/json',
       },
     });
-    console.log(response);
     if (response.ok) {
       alert('사용가능한 ID입니다.');
     } else {
@@ -119,6 +128,9 @@ const SignUpInputItemGroup = () => {
       {isShowAuthNumberInput && (
         <>
           <Input value={authNumber} onChange={changeAuthNumber} />
+          <Button disabled={false} onClick={checkAuthNumber}>
+            확인
+          </Button>
           <Button disabled={false} onClick={resendAuthNumber}>
             재요청
           </Button>

@@ -7,7 +7,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     await dbConnect();
     const id = await req.json();
     const users = await User.findOne({ id });
-    console.log(users);
+
     if (users === null) {
       return NextResponse.json({
         message: 'Available ID',
