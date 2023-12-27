@@ -47,7 +47,7 @@ const Header = () => {
             </>
           ) : (
             <div>
-              <StyleLink href={'/Login'}>로그인</StyleLink>
+              <StyleLink href={'/signIn'}>로그인</StyleLink>
               <StyleLink href={'/signUp'}>회원가입</StyleLink>
             </div>
           )}
