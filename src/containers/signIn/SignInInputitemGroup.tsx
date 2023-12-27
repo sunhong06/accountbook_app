@@ -1,4 +1,4 @@
-import { axiosInstance } from '@/api';
+import { axiosInstance } from '@/services/instance';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import InputLabelItem from '@/components/signUp/InputLabelItem';
