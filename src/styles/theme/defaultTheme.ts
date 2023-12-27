@@ -1,8 +1,8 @@
 const defaultTheme = {
   color: {
-    MAIN_BG: '#151617',
+    MAIN_BG: '#1f223f',
     WHILE: '#FFFFFF',
-    MAIN_COLOR: '#e7bf1c',
+    MAIN_COLOR: '#3ec578',
   },
   padding: {
     container: 20,
