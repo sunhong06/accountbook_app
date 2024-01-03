@@ -2,11 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import User from '../../../../../models/User';
 import dbConnect from '@/app/api/db/dbConnect';
 import bcrypt from 'bcrypt';
+import { timeUtils } from '@/utils/time';
 
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     await dbConnect();
-    const { id, password, email, date } = await req.json();
+    const { id, password, email } = await req.json();
 
     // bcrypt 비밀번호 암호화
     const hash = bcrypt.hashSync(password, 10);
@@ -15,7 +16,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       id,
       email,
       password: hash,
-      date,
+      date: timeUtils(),
     });
 
     // DB에 저장
