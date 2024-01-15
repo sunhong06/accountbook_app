@@ -3,23 +3,25 @@ import User from '../../../../../models/User';
 import dbConnect from '../../db/dbConnect';
 
 export async function POST(req: NextRequest, res: NextResponse) {
-  try {
-    await dbConnect();
-    const id = await req.json();
-    const users = await User.findOne({ id });
+  await dbConnect();
+  const id = await req.json();
+  const users = await User.findOne({ id });
 
-    if (users === null) {
-      return NextResponse.json({
-        message: 'Available ID',
-        status: 200,
-      });
-    } else {
-      return NextResponse.json({
-        message: 'Disabled ID',
-        status: 403,
-      });
-    }
-  } catch (error: any) {
-    return new NextResponse(error);
+  if (!users) {
+    return NextResponse.json(
+      {
+        message: '사용가능한 ID입니다.',
+        success: true,
+      },
+      { status: 200 },
+    );
+  } else {
+    return NextResponse.json(
+      {
+        message: '이미 사용 중인 아이디입니다.',
+        success: false,
+      },
+      { status: 409 },
+    );
   }
 }

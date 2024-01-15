@@ -7,9 +7,11 @@ import Button from '../common/Button';
 import { flexbox } from '@/styles/mixins/flexbox';
 import defaultTheme from '@/styles/theme/defaultTheme';
 import Container from '../common/layout/Container';
+import Logo from '../common/Logo';
 
 const HeaderWrapper = styled.div`
   border-bottom: 1px solid #2f2f2f;
+  background-color: ${defaultTheme.color.MAIN_BG};
   height: 70px;
 `;
 
@@ -19,13 +21,9 @@ const HeaderContent = styled.header`
   height: 100%;
 `;
 
-const Title = styled.h1`
-  font-size: 24px;
-`;
-
 const StyleLink = styled(Link)`
   color: ${defaultTheme.color.WHILE};
-  font-size: 12px;
+  font-size: ${defaultTheme.font.XS};
   padding-right: 10px;
 `;
 
@@ -38,7 +36,9 @@ const Header = () => {
     <HeaderWrapper>
       <Container>
         <HeaderContent>
-          <Title>COIN MOA</Title>
+          <h1>
+            <Logo width={40} height={40} />
+          </h1>
           {isLogin ? (
             <>
               <Button disabled={false} onClick={LogoutHandler}>

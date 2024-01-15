@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en'>
       <body suppressHydrationWarning={true} className={roboto.className}>
         <ReduxProvider>
-          <Header />
+          {/* <Header /> */}
           <main>
             <Container>{children}</Container>
           </main>

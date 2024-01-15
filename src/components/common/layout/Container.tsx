@@ -8,8 +8,7 @@ const Root = styled.div`
   height: 100%;
   padding-left: ${defaultTheme.padding.container}px;
   padding-right: ${defaultTheme.padding.container}px;
-  width: 1280px;
-  margin: 0 auto;
+  background-color: #ff5757;
 `;
 
 const Container = ({ children }: { children: React.ReactNode }) => {

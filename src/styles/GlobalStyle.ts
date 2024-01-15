@@ -6,6 +6,7 @@ import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
     ${reset}
+    
     * {   
         box-sizing: border-box;
         padding: 0;
@@ -83,7 +84,6 @@ const GlobalStyle = createGlobalStyle`
     body{
         background-color: ${defaultTheme.color.MAIN_BG};
     }
-
     
 `;
 

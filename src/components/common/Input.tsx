@@ -1,16 +1,14 @@
+import defaultTheme from '@/styles/theme/defaultTheme';
 import styled from 'styled-components';
 
 const StyleInput = styled.input`
   width: 100%;
-  height: 60px;
-  color: #fff;
-  background-color: #242846;
-  border-radius: 25px;
-  padding: 0 20px;
-  font-size: 14px;
+  background-color: #fff;
+  padding: 0 10px;
+  font-size: ${defaultTheme.font.XS};
 
   &::placeholder {
-    font-size: 12px;
+    font-size: ${defaultTheme.font.XS};
   }
   &:disabled {
     border-bottom: none;

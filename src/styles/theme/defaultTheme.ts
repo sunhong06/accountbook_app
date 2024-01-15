@@ -1,8 +1,19 @@
 const defaultTheme = {
   color: {
-    MAIN_BG: '#1f223f',
+    MAIN_BG: '#ff5757',
     WHILE: '#FFFFFF',
-    MAIN_COLOR: '#3ec578',
+    GREEN: '#00FF19',
+    BLUE: '#4255FD',
+    GRAY: '#D7D7D7',
+    MAIN_COLOR: '#000000',
+  },
+  font: {
+    XS: '12px',
+    S: '16px',
+    M: '20px',
+    L: '24px',
+    XL: '34px',
+    XXL: '64px',
   },
   padding: {
     container: 20,

@@ -1,32 +1,49 @@
 'use client';
 
-import InputLabelItem from '@/components/signIn/InputLabelItem';
-import SignInButton from '@/containers/signIn/SignInButton';
-import SignInInputitemGroup from '@/containers/signIn/SignInInputitemGroup';
+import Logo from '@/components/common/Logo';
+import SignInForm from '@/containers/signIn/SignInForm';
 import { flexbox } from '@/styles/mixins/flexbox';
 import defaultTheme from '@/styles/theme/defaultTheme';
 import styled from 'styled-components';
 
 const SignInWrap = styled.section`
-  ${flexbox('center', 'flex-start')}
+  ${flexbox('center', 'center')}
   flex-direction:column;
-  width: 500px;
-  height: calc(100vh - 70px);
+  width: 350px;
+  height: 100vh;
   margin: 0 auto;
 `;
 
 const SignInTitle = styled.h2`
-  font-size: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: ${defaultTheme.font.XL};
   color: ${defaultTheme.color.MAIN_COLOR};
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+`;
+
+const LogoText = styled.span`
+  margin-top: 10px;
+  font-size: ${defaultTheme.font.XL};
+  color: ${defaultTheme.color.WHILE};
+  font-weight: bold;
+`;
+const LogoText2 = styled.span`
+  margin-top: 5px;
+  font-size: ${defaultTheme.font.L};
+  color: ${defaultTheme.color.WHILE};
 `;
 
 const SignIn = () => {
   return (
     <SignInWrap>
-      <SignInTitle>Sign In</SignInTitle>
-      <SignInInputitemGroup />
-      <SignInButton />
+      <SignInTitle>
+        <Logo width={100} height={100} />
+        <LogoText>가계부</LogoText>
+        <LogoText2>account book</LogoText2>
+      </SignInTitle>
+      <SignInForm />
     </SignInWrap>
   );
 };
