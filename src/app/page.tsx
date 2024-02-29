@@ -1,10 +1,12 @@
-import Header from '@/components/global/Header';
+import Header from '@/components/global/Header/Header';
 
-export default function Home() {
+async function Home() {
   return (
     <>
       <Header />
-      <main>home</main>
+      <main>dd</main>
     </>
   );
 }
+
+export default Home;

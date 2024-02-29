@@ -1,9 +1,23 @@
-import { signUpObj } from '@/types/user';
-import { axiosInstance } from '../instance';
+import { signInObj, signUpObj } from '@/types/user';
+import axiosInstance from '../instance';
 
 // 회원가입
 export const createSignUp = async (formData: any) => {
   const res = await axiosInstance.post('/api/auth/signUp', formData);
+
+  return res.data;
+};
+
+//로그인
+export const signIn = async (formData: signInObj) => {
+  const res = await axiosInstance.post('/api/auth/signIn', formData);
+
+  return res.data;
+};
+
+// 로그아웃
+export const signOut = async () => {
+  const res = await axiosInstance.post('/api/auth/signOut');
 
   return res.data;
 };
@@ -25,6 +39,20 @@ export const sendAuthCode = async (formData: string) => {
 // id중복확인
 export const userIdCheck = async (formData: string) => {
   const res = await axiosInstance.post('api/auth/checkid', formData);
+
+  return res.data;
+};
+
+// token재발급
+export const getToken = async () => {
+  const res = await axiosInstance.get('api/auth/token');
+
+  return res.data;
+};
+
+// user 정보
+export const getUserid = async (accessToken: any) => {
+  const res = await axiosInstance.post('api/auth/userInfo', accessToken);
 
   return res.data;
 };

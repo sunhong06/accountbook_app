@@ -1,17 +1,17 @@
 import jwt from 'jsonwebtoken';
-const secretKey = process.env.JWT_SECRET_KEY!;
+const secretKey = `${process.env.NEXT_PUBLIC_JWT_SECRET_KEY}`;
 
 export const jwtUtils = () => {
   // access Token 발급
   const sign = (userId: string) => {
     return jwt.sign({ id: userId }, secretKey, {
       algorithm: 'HS256',
-      expiresIn: '1h',
+      expiresIn: '1m',
     });
   };
 
   // access Token 검증
-  const verify = (token: string) => {
+  const verify = (token: any) => {
     let decoded: any = null;
     try {
       decoded = jwt.verify(token, secretKey);

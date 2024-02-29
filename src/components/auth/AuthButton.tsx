@@ -11,11 +11,11 @@ interface AuthButtonProps {
 const StyleButton = styled(Button)`
   width: 100%;
   height: 50px;
-  border-radius: 5px;
-  background-color: ${defaultTheme.color.MAIN_COLOR};
   font-size: ${defaultTheme.font.XS};
   font-weight: bold;
   color: ${defaultTheme.color.WHILE};
+  background-color: ${defaultTheme.color.MAIN_COLOR};
+  border-radius: 5px;
 `;
 
 const AuthButton = ({ text, onClick, disabled }: AuthButtonProps) => {

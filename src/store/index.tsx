@@ -1,11 +1,10 @@
-import { combineReducers, configureStore, PayloadAction } from '@reduxjs/toolkit';
-
-const reducer = (state: any, action: PayloadAction<any>) => {
-  return combineReducers({});
-};
+import userSlice from '@/redux/userSlice';
+import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
-  reducer,
+  reducer: {
+    user: userSlice,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

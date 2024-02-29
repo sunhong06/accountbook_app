@@ -1,6 +1,5 @@
 'use client';
 
-import AuthButton from '@/components/auth/AuthButton';
 import Logo from '@/components/common/Logo';
 import { flexbox } from '@/styles/mixins/flexbox';
 import defaultTheme from '@/styles/theme/defaultTheme';
@@ -9,6 +8,7 @@ import SignUpInputItemGroup from '@/containers/signUp/SignUpForm';
 
 const SignUpWrap = styled.section`
   ${flexbox('center', 'center')}
+
   flex-direction:column;
   width: 350px;
   height: 100vh;
@@ -19,16 +19,16 @@ const SignUpTitle = styled.h2`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10px;
   font-size: ${defaultTheme.font.XL};
   color: ${defaultTheme.color.MAIN_COLOR};
-  margin-bottom: 10px;
 `;
 
 const LogoText = styled.span`
   margin-top: 10px;
   font-size: ${defaultTheme.font.XL};
-  color: ${defaultTheme.color.WHILE};
   font-weight: bold;
+  color: ${defaultTheme.color.WHILE};
 `;
 const LogoText2 = styled.span`
   margin-top: 5px;

@@ -1,10 +1,14 @@
-import Timer from '@/hook/Timer';
+import Timer from '@/hook/useTimer';
 import { useEffect, useState } from 'react';
 
-const AuthTimer = () => {
-  const [minutes, setMinutes] = useState<number>(5);
-  const [seconds, setSeconds] = useState<number>(0);
+interface AuthTimerProps {
+  setSeconds: any;
+  setMinutes: any;
+  seconds: number;
+  minutes: number;
+}
 
+const AuthTimer = ({ setSeconds, setMinutes, seconds, minutes }: AuthTimerProps) => {
   useEffect(() => {
     const countdown = setInterval(() => {
       if (seconds > 0) {

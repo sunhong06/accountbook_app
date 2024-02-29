@@ -2,6 +2,9 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const StyleButton = styled.button`
+  font-size: 12px;
+  color: #fff;
+
   &:disabled {
     color: #777;
     cursor: no-drop;

@@ -1,6 +1,5 @@
 import { signUpObj } from '@/types/user';
 import { useState, FormEvent } from 'react';
-import { axiosInstance } from '@/services/instance';
 import SignUpInputItemGroupView from '../../views/signup/SignUpFormView';
 import { isValidate } from '@/utils/isValidate';
 import { checkAuthCode, createSignUp, sendAuthCode, userIdCheck } from '@/services/api/auth';
@@ -15,7 +14,8 @@ const SignUpInputForm = () => {
     isAuthNumberComplete: true,
   });
   const [isValidation, setIsValidation] = useState(false);
-
+  const [minutes, setMinutes] = useState<number>(5);
+  const [seconds, setSeconds] = useState<number>(0);
   const router = useRouter();
 
   const inputChangeHandler = (key: keyof signUpObj, value: any) => {
@@ -23,7 +23,10 @@ const SignUpInputForm = () => {
   };
 
   // input 감지
-  const idInputChangeHandler = (e: FormEvent<HTMLInputElement>) => inputChangeHandler('id', e.currentTarget.value);
+  const idInputChangeHandler = (e: FormEvent<HTMLInputElement>) => {
+    inputChangeHandler('id', e.currentTarget.value);
+    setFlag((prev) => ({ ...prev, isUsernameAvailable: true }));
+  };
   const passwordInputChangeHandler = (e: FormEvent<HTMLInputElement>) =>
     inputChangeHandler('password', e.currentTarget.value);
   const passwordConfirmInputChangeHandler = (e: FormEvent<HTMLInputElement>) =>
@@ -38,6 +41,12 @@ const SignUpInputForm = () => {
 
   // 회원가입
   const signUpHandler = async () => {
+    if (!Exp.id && !Exp.email && Exp.password == '' && Exp.passwordConfirm == '') {
+      setIsValidation(false);
+    }
+    if (Exp.id || Exp.email || Exp.password !== '' || Exp.passwordConfirm !== '') {
+      setIsValidation(true);
+    }
     if (flag.isUsernameAvailable) {
       return alert('아이디 중복 확인이 필요합니다.');
     }
@@ -45,13 +54,7 @@ const SignUpInputForm = () => {
       return alert('이메일 인증을 해주세요.');
     }
     if (flag.isAuthNumberComplete) {
-      return alert('인증번호를 인증을 완료해주세요.');
-    }
-    if (!isValidation) {
-      return setIsValidation(true);
-    }
-    if (Exp.id || Exp.password || Exp.email || Exp.passwordConfirm) {
-      return alert('빈칸을 입력해주세요.');
+      return alert('인증번호 인증을 완료해주세요.');
     }
     try {
       const res = await createSignUp({ email: inputValue.email, id: inputValue.id, password: inputValue.password });
@@ -68,6 +71,8 @@ const SignUpInputForm = () => {
       const res = await checkAuthCode({ authNumber, email: inputValue.email });
 
       setFlag((prev) => ({ ...prev, isAuthNumberComplete: false }));
+      setMinutes(0);
+      setSeconds(0);
       return alert('인증되었습니다.');
     } catch (error: any) {
       setFlag((prev) => ({ ...prev, isAuthNumberComplete: true }));
@@ -80,10 +85,11 @@ const SignUpInputForm = () => {
     try {
       const res = await sendAuthCode(inputValue.email);
       setFlag((prev) => ({ ...prev, isShowAuthNumberInput: false }));
+      setMinutes(5);
+      setSeconds(0);
       return alert('이메일이 전송되었습니다.');
     } catch (error) {
       setFlag((prev) => ({ ...prev, isShowAuthNumberInput: true }));
-
       return alert('이메일 전송에 실패하였습니다.');
     }
   };
@@ -98,14 +104,13 @@ const SignUpInputForm = () => {
     }
     try {
       const res = await userIdCheck(inputValue.id);
-      if (res.success) {
-        alert('사용 가능한 ID 입니다.');
-        setFlag((prev) => ({ ...prev, isUsernameAvailable: false }));
-      }
+      alert('사용 가능한 ID 입니다.');
+      setFlag((prev) => ({ ...prev, isUsernameAvailable: false }));
     } catch (error: any) {
       alert('이미 사용중인 ID입니다.');
       setFlag((prev) => ({ ...prev, isUsernameAvailable: true }));
       setInputValue((prev) => ({ ...prev, id: '' }));
+      console.log(error);
     }
   };
 
@@ -133,6 +138,10 @@ const SignUpInputForm = () => {
     checkIdHandler,
     flag,
     isValidation,
+    setMinutes,
+    setSeconds,
+    seconds,
+    minutes,
   };
 
   return <SignUpInputItemGroupView {...props} />;

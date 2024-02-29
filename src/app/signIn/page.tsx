@@ -8,6 +8,7 @@ import styled from 'styled-components';
 
 const SignInWrap = styled.section`
   ${flexbox('center', 'center')}
+
   flex-direction:column;
   width: 350px;
   height: 100vh;
@@ -18,16 +19,16 @@ const SignInTitle = styled.h2`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10px;
   font-size: ${defaultTheme.font.XL};
   color: ${defaultTheme.color.MAIN_COLOR};
-  margin-bottom: 10px;
 `;
 
 const LogoText = styled.span`
   margin-top: 10px;
   font-size: ${defaultTheme.font.XL};
-  color: ${defaultTheme.color.WHILE};
   font-weight: bold;
+  color: ${defaultTheme.color.WHILE};
 `;
 const LogoText2 = styled.span`
   margin-top: 5px;

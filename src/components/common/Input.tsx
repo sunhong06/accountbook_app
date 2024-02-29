@@ -3,16 +3,17 @@ import styled from 'styled-components';
 
 const StyleInput = styled.input`
   width: 100%;
-  background-color: #fff;
   padding: 0 10px;
   font-size: ${defaultTheme.font.XS};
+  background-color: #fff;
 
   &::placeholder {
     font-size: ${defaultTheme.font.XS};
   }
+
   &:disabled {
-    border-bottom: none;
     cursor: no-drop;
+    border-bottom: none;
   }
 `;
 

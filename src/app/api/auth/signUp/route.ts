@@ -8,9 +8,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
   try {
     await dbConnect();
     const { id, password, email } = await req.json();
-    // if (!id || !email || !password) {
-    //   return NextResponse.json({ message: '빈칸을 확인해주세요' }, { status: 400 });
-    // }
 
     // bcrypt 비밀번호 암호화
     const hash = bcrypt.hashSync(password, 10);

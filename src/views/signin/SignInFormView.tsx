@@ -1,46 +1,51 @@
+'use client';
+
 import InputLabelItem from '@/components/auth/InputLabelItem';
 import defaultTheme from '@/styles/theme/defaultTheme';
-import { FormEvent } from 'react';
+import { FormEvent, useEffect } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import AuthButton from '@/components/auth/AuthButton';
 import { signInObj } from '@/types/user';
 
 const InputLabelItemWrap = styled.div`
-  padding-bottom: 10px;
   width: 100%;
+  padding-bottom: 10px;
 `;
 
 const StyleInputLabelItem = styled(InputLabelItem)`
-  margin-bottom: 20px;
-  width: 100%;
   position: relative;
+  width: 100%;
+  margin-bottom: 20px;
 
   label {
-    color: #fff;
     display: block;
-    font-size: ${defaultTheme.font.XS};
     padding-bottom: 7px;
+    font-size: ${defaultTheme.font.XS};
+    color: #fff;
   }
+
   input {
-    border-bottom: 1px solid #ddd;
     width: 100%;
     height: 40px;
     color: ${defaultTheme.color.MAIN_COLOR};
+    border-bottom: 1px solid #ddd;
   }
 
   button {
     position: absolute;
-    bottom: 10px;
     right: 0;
+    bottom: 10px;
     color: ${defaultTheme.color.MAIN_COLOR};
   }
 `;
 const StyledLink = styled(Link)`
   display: block;
-  text-align: right;
-  color: ${defaultTheme.color.WHILE};
+  margin: 5px 0;
   font-size: ${defaultTheme.font.XS};
+  color: ${defaultTheme.color.WHILE};
+  text-align: right;
+
   &:hover {
     text-decoration: underline;
   }
@@ -61,14 +66,13 @@ const SignInFormView = ({
   return (
     <InputLabelItemWrap>
       <StyleInputLabelItem label='아이디' value={inputValue.id} onChangeHandler={idInputChangeHandler} />
-
       <StyleInputLabelItem
         label='비밀번호'
         type='password'
         value={inputValue.password}
         onChangeHandler={passwordInputChangeHandler}
       />
-      <StyledLink href='/signup'>회원가입</StyledLink>
+      <StyledLink href='/signUp'>회원가입</StyledLink>
       <AuthButton disabled={false} text='로그인' onClick={signInHandler} />
     </InputLabelItemWrap>
   );

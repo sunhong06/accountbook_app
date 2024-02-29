@@ -6,20 +6,25 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:css": "stylelint --fix './src/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
+    "@stylelint/postcss-css-in-js": "^0.38.0",
     "@svgr/webpack": "^8.1.0",
     "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "jsonwebtoken": "^9.0.2",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^8.0.3",
     "next": "^13.5.6",
+    "next-auth": "^4.24.5",
     "next-redux-wrapper": "^8.1.0",
     "nodemailer": "^6.9.7",
+    "postcss": "^8.4.35",
+    "postcss-syntax": "^0.36.2",
     "prettier": "^3.1.0",
     "react": "^18",
     "react-dom": "^18",
@@ -27,9 +32,11 @@
     "react-redux": "^9.0.4",
     "styled-components": "^6.1.1",
     "styled-reset": "^4.5.1",
-    "stylelint": "^15.11.0",
+    "stylelint-config-concentric-order": "^5.2.0",
     "stylelint-config-recess-order": "^4.4.0",
-    "stylelint-config-standard-scss": "^11.1.0"
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-order": "^6.0.4",
+    "stylelint-processor-styled-components": "^1.10.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -40,6 +47,10 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
+    "postcss-styled-syntax": "^0.6.4",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-styled-components-order": "^1.0.6",
     "typescript": "^5"
   }
 }

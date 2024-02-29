@@ -1,4 +1,4 @@
-import Header from '@/components/global/Header';
+import Header from '@/components/global/Header/Header';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import GlobalStyle from '@/styles/GlobalStyle';
@@ -17,7 +17,7 @@ const roboto = Roboto({
   display: 'swap',
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
       <body suppressHydrationWarning={true} className={roboto.className}>
